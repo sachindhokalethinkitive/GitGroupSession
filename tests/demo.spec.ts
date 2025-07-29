@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 // Update the import path if logger.js is located elsewhere, for example:
 import Logger from '../utils/logger';
 // Or ensure that '../utils/logger.js' exists and is implemented correctly.
@@ -62,7 +62,7 @@ test.describe('Patient Registration - Mandatory Fields', () => {
     await page.getByRole('button', { name: 'Next' }).click();
     Logger.info('Proceeded to patient details form');
     // Step 4: Fill patient details
-    await page.getByRole('textbox', { name: 'First Name *' }).fill('Shubhangi');
+    await page.getByRole('textbox', { name: 'First Name *' }).fill('Rushikesh');
     await page.getByRole('textbox', { name: 'Last Name *' }).fill('Gade');
     await page.getByRole('textbox', { name: 'Date Of Birth *' }).fill('01-01-1999');
     await page.locator('form').filter({ hasText: 'Gender *Gender *' }).getByLabel('Open').click();
@@ -141,3 +141,7 @@ test('demo - appointment booking', async ({ page }) => {
   Logger.info('Saved appointment');
   await logout(page);
 });
+
+function login(page: Page) {
+  throw new Error('Function not implemented.');
+}
