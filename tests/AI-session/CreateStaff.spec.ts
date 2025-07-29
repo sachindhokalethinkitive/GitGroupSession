@@ -25,6 +25,7 @@ test.describe('User Management Tests', () => {
     await page.click('button[role="tab"]:has-text("Users")');
     
     // Verify we're on the Users tab
+    //This is my new comment
     await expect(page.locator('button[role="tab"][aria-selected="true"]:has-text("Users")')).toBeVisible();
 
     // Click on "Add User" button
@@ -36,10 +37,10 @@ test.describe('User Management Tests', () => {
 
     // Fill mandatory details
     // 1. First name: Sanu
-    await page.fill('input[name="firstName"]', 'Sanu');
+    await page.fill('input[name="firstName"]', 'Rishikesh');
     
     // 2. Last name: Bhor
-    await page.fill('input[name="lastName"]', 'Bhor');
+    await page.fill('input[name="lastName"]', 'mokashe');
     
     // 3. Role: Front office admin
     await page.click('[role="combobox"][aria-labelledby="mui-component-select-role"]');

@@ -1,24 +1,23 @@
-import { test, expect } from '@playwright/test';
-// Update the import path if logger.js is located elsewhere, for example:
+import { test, expect, Page } from '@playwright/test';
 import Logger from '../utils/logger';
-// Or ensure that '../utils/logger.js' exists and is implemented correctly.
-
 // =========================
 // Utility Functions
 // =========================
 
 // Generates a random email for patient registration
-  function randomEmail() {
-    const chars = 'abcdefghijklmnopqrstuvwxyz';
-    let name = '';
-    for (let i = 0; i < 8; i++) {
-      name += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return `${name}${Math.floor(Math.random() * 10000)}@thinkitive.com`;
+function randomEmail() {
+  const chars = 'abcdefghijklmnopqrstuvwxyz';
+  let name = '';
+  for (let i = 0; i < 8; i++) {
+    name += chars.charAt(Math.floor(Math.random() * chars.length));
   }
+  return `${name}${Math.floor(Math.random() * 10000)}@thinkitive.com`;
+}
 
 /**
-async function login(page) {
+ * Logs in to the application using the provided page instance.
+ */
+async function login(page: Page) {
   Logger.info('Navigating to login page');
   await page.goto('https://stage_ketamin.uat.provider.ecarehealth.com/');
   await page.goto('https://stage_ketamin.uat.provider.ecarehealth.com/auth/login');
@@ -26,14 +25,14 @@ async function login(page) {
   await page.getByPlaceholder('Email').fill('amol.shete+TP@medarch.com');
   await page.getByPlaceholder('Email').press('Tab');
   await page.getByPlaceholder('*********').fill('Test@123$');
-  await page.getByRole('button', { name: 'Let\'s get Started' }).click();
+  await page.getByRole('button', { name: "Let's get Started" }).click();
   Logger.info('Logged in successfully');
 }
 
 /**
  * Logs out of the application using the provided page instance.
  */
-async function logout(page) {
+async function logout(page: Page) {
   Logger.info('Logging out');
   await page.getByRole('img', { name: 'admin image' }).click();
   await page.getByText('Log Out').click();
@@ -141,3 +140,4 @@ test('demo - appointment booking', async ({ page }) => {
   Logger.info('Saved appointment');
   await logout(page);
 });
+
