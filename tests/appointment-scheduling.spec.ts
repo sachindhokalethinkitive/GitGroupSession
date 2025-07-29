@@ -18,16 +18,19 @@ test('Appointment Scheduling – Mandatory Fields', async ({ page }) => {
   await page.getByText('New Appointment', { exact: true }).click();
 
   // 5. Select "Patient name" from the dropdown - Sainath Gaikwad (search and select)
-  await page.getByRole('combobox', { name: 'Patient Name *' }).click();
-  await page.getByRole('combobox', { name: 'Patient Name *' }).fill('Rutuja Dumbre');
-  await page.getByRole('option', { name: 'Rutuja Dumbre' }).first().click();
+  const patientCombo = page.getByRole('combobox', { name: 'Patient Name *' });
+  await patientCombo.click();
+  await patientCombo.fill('Sachin Dhokale');
+  await page.getByRole('option', { name: 'Sachin Dhokale' }).first().click();
 
   // 6. Select "Appointment type." from the dropdown - Follow-up visit
-  await page.getByRole('combobox', { name: 'Appointment Type *' }).click();
+  const appointmentTypeCombo = page.getByRole('combobox', { name: 'Appointment Type *' });
+  await appointmentTypeCombo.click();
   await page.getByRole('option', { name: 'Follow-up visit' }).click();
 
   // 7. Fill "Reason for visit" textfield - Fever
-  await page.getByRole('textbox', { name: 'Reason For Visit *' }).fill('Fever');
+  const reasonBox = page.getByRole('textbox', { name: 'Reason For Visit *' });
+  await reasonBox.fill('Fever');
 
   // 8. Select "Time zone" from the dropdown - Alaska Standard Time (GMT -09:00)
   await page.getByRole('combobox', { name: 'Timezone *' }).click();
